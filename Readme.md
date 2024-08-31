@@ -10,5 +10,8 @@ notes:
     c. weighted sum function<br>
     d. reduce operation
 
+3. torch.compile 可以让你的模型先编译一遍让系统知道你待会儿要干啥 而不用每一步每一个forward他都重新load东西进去
+
+
  
 
