@@ -1,16 +1,45 @@
-notes:
+# NanoGPT Study Repository
 
-1. 残差是指你将你原始输出 除了直接输入到下一层 还可以直接输入到在下一层<br>
-    a. 这样可以加速推理， 因为顶部流出的梯度（顶部是指最终输出端）他会均匀地分配给他底下的分支
-    即从顶部流出的梯度通过残差路径可以直接流向输入
+This repository contains my study implementation and notes for [@karpathy's build-nanogpt](https://github.com/karpathy/build-nanogpt) tutorial. It's a from-scratch reproduction of GPT-2.
 
-2. attentions is a communication operation<br>
-    a. aggregation function<br>
-    b. pooling function<br>
-    c. weighted sum function<br>
-    d. reduce operation
+## Repository Structure
 
-3. torch.compile 可以让你的模型先编译一遍让系统知道你待会儿要干啥 而不用每一步每一个forward他都重新load东西进去
+### Core Training Files
+- **`train.py`** - Main training script with complete GPT implementation including:
+  - Multi-head self-attention with Flash Attention optimization
+  - MLP blocks with GELU activation
+  - Layer normalization and residual connections
+  - Data loading and distributed training support
+  - HellaSwag evaluation integration
+
+### Data Processing
+- **`fineweb.py`** - FineWeb-Edu dataset downloader and tokenizer
+  - Downloads 10B token dataset for pretraining
+  - GPT-2 tokenization using tiktoken
+  - Efficient data sharding for large-scale training
+
+- **`input.txt`** - Sample text data for quick experiments
+
+### Evaluation
+- **`hellaswag.py`** - HellaSwag benchmark evaluation script
+  - Common sense reasoning evaluation
+  - Multiple choice completion task
+  - Model performance comparison utilities
+
+### Exploration
+- **`play.ipynb`** - Jupyter notebook for interactive experimentation
+  - Model testing and inference
+  - Training visualization
+  - Architecture exploration
+
+
+## References
+
+- [Original Tutorial](https://github.com/karpathy/build-nanogpt) by Andrej Karpathy
+- [Attention Is All You Need](https://arxiv.org/abs/1706.03762) - Original Transformer paper
+- [GPT-2 Paper](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)
+- [HellaSwag Benchmark](https://arxiv.org/abs/1905.07830)
+
 
 
  
